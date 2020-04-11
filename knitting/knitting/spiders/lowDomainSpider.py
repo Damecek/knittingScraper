@@ -15,7 +15,6 @@ class KnittingSpider(scrapy.Spider):
                 yield scrapy.Request(url=json.loads(url)['url'], callback=self.parse)
 
     def parse(self, response):
-        print('im in parse---')
         for product in response.css('div.product'):
             yield {
                 'url': response.urljoin(product.css('a').attrib['href']),
